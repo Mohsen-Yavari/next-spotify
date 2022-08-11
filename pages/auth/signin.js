@@ -1,9 +1,10 @@
-import React from 'react';
-import Head from 'next/head';
 
+import Head from 'next/head';
 import Image from "next/image";
 
-import { getProviders,useSession } from "next-auth/react";
+import Loader from "../../components/Loader";
+
+import { getProviders, signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
 import {useEffect} from "react";
@@ -17,7 +18,9 @@ function Signin({providers}) {
         if(session){
             router.push("/")
         }
-    },[])
+    },[session]);
+
+    if (session) return <Loader />
 
   return (
     <div className="bg-black h-screen flex flex-col items-center pt-40 space-y-8 ">
