@@ -18,8 +18,10 @@ const {status,data:session} = useSession({
 });
 
 if(status === "loading"){
-  return <Loader />
+  return <Loader />;
 }
+
+console.log(session);
 
 
 
