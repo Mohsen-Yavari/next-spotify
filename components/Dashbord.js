@@ -23,7 +23,7 @@ function Dashbord() {
     setPlayingTrack(track);
   }
   return (
-    <main>
+    <main className="flex min-height-screen bg-black lg:pb-24">
         <Sidebar />
         <Body 
         spotifyApi={spotifyApi}
