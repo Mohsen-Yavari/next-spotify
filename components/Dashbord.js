@@ -1,10 +1,12 @@
-import React from 'react';
 
 import Sidebar from "./Sidbar";
 import Body from "./Body";
 import Right from "./Right";
 
 import SpotifyWebApi from "spotify-web-api-node";
+
+import { useRecoilState } from "recoil";
+import { playingTrackState } from "../atom/playerAtom";
 
 
 
@@ -14,10 +16,19 @@ const spotifyApi = new SpotifyWebApi({
 
 
 function Dashbord() {
+
+  const [playingTrack, setPlayingTrack] = useRecoilState(playingTrackState);
+
+  const chooseTrack = (track) => {
+    setPlayingTrack(track);
+  }
   return (
     <main>
         <Sidebar />
-        <Body spotifyApi={spotifyApi} />
+        <Body 
+        spotifyApi={spotifyApi}
+        chooseTrack={chooseTrack}
+        />
         <Right />
     </main>
   )
