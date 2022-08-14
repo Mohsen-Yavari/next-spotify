@@ -3,6 +3,8 @@ import { MdOutlineSettings } from "react-icons/md";
 import { BiBell } from "react-icons/bi";
 import { ViewGridIcon } from "@heroicons/react/solid";
 
+import Dropdown from "./Dropdown";
+
 function Right() {
   return <section className="p-4 space-y-8 pr-8">
     <div className="flex space-x-2 items-center justify-between">
@@ -11,9 +13,11 @@ function Right() {
       h-12 py-3 px-4 ">
         <HiOutlineShieldCheck className="text-[#ccc] text-xl"  />
         <MdOutlineSettings className="text-[#ccc] text-xl"  />
-        <div>
-          
-        </div>
+        <BiBell className="text-[#ccc] text-xl"  />
+      </div>
+      {/* Profile */}
+      <div>
+        <Dropdown />
       </div>
     </div>
   </section>
