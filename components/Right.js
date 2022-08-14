@@ -2,19 +2,14 @@ import { HiOutlineShieldCheck } from "react-icons/hi";
 import { MdOutlineSettings } from "react-icons/md";
 import { BiBell } from "react-icons/bi";
 import { ViewGridIcon } from "@heroicons/react/solid";
-
 import Dropdown from "./Dropdown";
-
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
-
 import RecentlyPlayed from "./RecentlyPlayed";
-
-
 
 function Right({ chooseTrack, spotifyApi }) {
   const { data: session } = useSession();
-  const accessToken = session?.accessToken;
+  const { accessToken } = session;
   const [recentlyPlayed, setRecentlyPlayed] = useState([]);
 
   // Recently Played Tracks...
@@ -36,23 +31,23 @@ function Right({ chooseTrack, spotifyApi }) {
     });
   }, [accessToken]);
 
-  return <section className="p-4 space-y-8 pr-8">
-    <div className="flex space-x-2 items-center justify-between">
-      {/* Icons */}
-      <div className="flex items-center space-x-4 border-2 border-[262626] rounded-full 
-      h-12 py-3 px-4 ">
-        <HiOutlineShieldCheck className="text-[#ccc] text-xl"  />
-        <MdOutlineSettings className="text-[#ccc] text-xl"  />
-        <BiBell className="text-[#ccc] text-xl"  />
-      </div>
-      
-
+  return (
+    <section className="p-4 space-y-8 pr-8">
+      <div className="flex space-x-2 items-center justify-between">
+        {/* Icons */}
+        <div className="flex items-center space-x-4 border-2 border-[#262626] rounded-full h-12 py-3 px-4">
+          <HiOutlineShieldCheck className="text-[#CCCCCC] text-xl" />
+          <MdOutlineSettings className="text-[#CCCCCC] text-xl" />
+          <div>
+            <BiBell className="text-[#CCCCCC] text-xl" />
+          </div>
+        </div>
         {/* Profile */}
         <Dropdown />
-    </div>
+      </div>
 
-    {/* Recently Played Tracks */}
-    <div className="bg-[#0D0D0D] border-2 border-[#262626] p-4 rounded-xl space-y-4">
+      {/* Recently Played Tracks */}
+      <div className="bg-[#0D0D0D] border-2 border-[#262626] p-4 rounded-xl space-y-4">
         <div className="flex items-center justify-between">
           <h4 className="text-white font-semibold text-sm">Recently Played</h4>
           <ViewGridIcon className="text-[#686868] h-6" />
@@ -71,7 +66,8 @@ function Right({ chooseTrack, spotifyApi }) {
           View All
         </button>
       </div>
-  </section>
+    </section>
+  );
 }
 
-export default Right
+export default Right;

@@ -10,7 +10,7 @@ import { useRecoilState } from "recoil";
 import { playingTrackState } from "../atom/playerAtom";
 import { useSession } from "next-auth/react";
 
-import {Player} from "./Player";
+import Player from "./Player";
 
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.SPOTIFY_CLIENT_ID,
@@ -39,22 +39,19 @@ function Dashbord() {
   }, [accessToken]);
 
   return (
-    <main className="flex min-height-screen bg-black lg:pb-24">
+
+      <main className="flex min-h-screen min-w-max bg-black lg:pb-24">
         <Sidebar />
-        <Body 
-        spotifyApi={spotifyApi}
-        chooseTrack={chooseTrack}
-        />
-        <Right 
-         spotifyApi={spotifyApi}
-         chooseTrack={chooseTrack}
-        />
-
-        <div>
-          <Player />
-        </div>
-    </main>
-  )
-}
-
-export default Dashbord
+        <Body chooseTrack={chooseTrack} spotifyApi={spotifyApi} />
+        <Right chooseTrack={chooseTrack} spotifyApi={spotifyApi} />
+  
+        {showPlayer && (
+          <div className="fixed bottom-0 left-0 right-0 z-50">
+            <Player accessToken={accessToken} trackUri={playingTrack.uri} />
+          </div>
+        )}
+      </main>
+    );
+  }
+  
+  export default Dashbord;
