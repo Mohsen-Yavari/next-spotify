@@ -46,7 +46,7 @@ function Track({ track, chooseTrack }) {
         <div className="flex items-center rounded-full border-2 border-[#262626] w-[85px] h-10 relative cursor-pointer group-hover:border-white/40">
           <AiFillHeart
             className={`text-xl ml-3 icon ${
-              hasLiked ? "text-[#1ED760]" : "text-[#868686]"
+              hasLiked ? "text-[#ff0404]" : "text-[#868686]"
             }`}
             onClick={() => setHasLiked(!hasLiked)}
           />
