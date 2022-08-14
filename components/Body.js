@@ -26,6 +26,7 @@ useEffect(() => {
 useEffect(() => {
  if(!search) return setSearchResults([]);
  if (!accessToken) return;
+ let cancel = false;
 
  spotifyApi.searchTracks(search).then((res)=>{
   setSearchResults(res.body.tracks.items.map((track)=>{
@@ -40,6 +41,8 @@ useEffect(() => {
   }));
  })
 },[search,accessToken]);
+
+
 
  // New Releases...
  useEffect(() => {
